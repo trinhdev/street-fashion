@@ -20,6 +20,7 @@ use App\Http\Controllers\Client\ManagerUser;
 
 // use App\Http\Controllers\FileController;
 use App\Http\Controllers\VerifyOtpController;
+use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\client\formController;
 use App\Http\Controllers\client\HomeController;
 use App\Http\Controllers\LoginGoogleController;
@@ -250,5 +251,5 @@ Route::post('/order', [OrderController::class, 'store'])->name('order.store');
 Route::post('/checkPayment', [OrderController::class, 'checkPayment'])->name('order.checkpayment');
 Route::post('/thueapi-hooks', [OrderController::class, 'thueapi_hooks']);
 Route::post('/apply-voucher', [OrderController::class, 'applyVoucher'])->name('apply.voucher');
-
-
+Route::post('/cart/add', [CartController::class, 'addToCarts'])->middleware('auth');
+Route::get('/cart', [CartController::class, 'getCarts'])->middleware('auth');

@@ -23,7 +23,7 @@
                                     <label for="quantity" class="control-label">
                                         <small class="req text-danger">* </small>Số lượng
                                     </label>
-                                    <input type="number" value="{{ $products->quantity }}" id="quantity" name="quantity" class="form-control" min="1" required>
+                                    <input type="number" value="{{ $products->product_meta->first()->quantity ?? '' }}" id="quantity" name="quantity" class="form-control" min="1" required>
                             </div>
                             <div class="form-group" app-field-wrapper="price_old">
                                 <label for="price_old" class="control-label">

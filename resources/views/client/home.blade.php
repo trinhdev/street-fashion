@@ -50,9 +50,9 @@
                                
                                         <div class="relative">
                                             <div class="image-container">
-                                                <img src="/img/products/{{ $product['primary_image'] }}" alt="PRODUCT_IMAGE_ALT"
+                                                <img src="{{ asset($product->primary_image) }}" alt="PRODUCT_IMAGE_ALT"
                                                     class="img-primary h-64 transition-transform duration-300 hover:scale-105" />
-                                                <img src="/img/products/{{ $product['second_image'] }}" alt="PRODUCT_IMAGE_ALT 2"
+                                                <img src="{{ asset($product->primary_image) }}" alt="PRODUCT_IMAGE_ALT 2"
                                                     class="img-secondary h-64 transition-transform duration-300 hover:scale-105" />
                                             </div>
                                         </div>

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin\DashBoard;
 
-use App\Models\Brand;
 use App\Models\product;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
@@ -103,6 +102,12 @@ class ProductsController extends BaseController
 
         // Lưu cập nhật sản phẩm
         $product->save();
+        $productmeta=product_meta::create([
+            'id_product' => $product->id,
+            'price'=>$request->input('price'),
+            'quantity'=>$request->input('quantity'),
+            'price_sale'=> $request->input('price_sale'),
+        ]);
     }
 }
 
@@ -169,9 +174,21 @@ class ProductsController extends BaseController
     $product->name = $request->input('name');
     $product->id_category_child = $request->input('id_category_child');
     $product->status = $request->has('status') ? 1 : 0; // Cập nhật trạng thái
-    $productMeta = $product->product_meta->first();
-    $productMeta->price = $request->price;
-    $productMeta->price_sale = $request->price_sale;
+
+    // Kiểm tra nếu product_meta tồn tại
+    $product_meta = $product->product_meta->first();
+
+    if (!$product_meta) {
+        // Nếu không tìm thấy product_meta, tạo mới
+        $product_meta = new product_meta();
+        $product_meta->id_product = $product->id;
+    }
+
+    // Cập nhật giá trị trong product_meta
+    $product_meta->price = $request->input('price');
+    $product_meta->price_sale = $request->input('price_sale');
+    $product_meta->quantity = $request->input('quantity');
+    $product_meta->save();
     $product->save();
 
     // Xử lý hình ảnh mới
@@ -233,7 +250,7 @@ class ProductsController extends BaseController
     
 
     
-        return redirect()->route('admin.products.index')->with(['success'=>'Cập nhật sản phẩm thành công!']);
+        return redirect()->route('admin.products.index')->with(['success' => true,'message'=>'Cập nhật sản phẩm thành công!']);
     }
     
 

@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Client;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Models\Color;
+use App\Models\Cart;
 use App\Models\Size;
-use App\Models\ProductMeta;
+use App\Models\Color;
+use App\Models\Product;
+use App\Models\productmeta;
+use Illuminate\Http\Request;
 use App\Models\SearchKeyword;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -134,4 +136,46 @@ class CartController extends Controller
     {
         return view('client.cart.order_successfully');
     }
+
+
+//     public function addToCarts(Request $request)
+//     {
+//         $request->validate([
+//             'product_id' => 'required|exists:products,id',
+//             'quantity' => 'required|integer|min:1',
+//         ]);
+
+//         // Lấy ID người dùng (hoặc session nếu không đăng nhập)
+//         $userId = Auth::id();
+
+//         // Kiểm tra xem sản phẩm đã có trong giỏ chưa
+//         $cartItem = Cart::where('user_id', $userId)
+//             ->where('product_id', $request->product_id)
+//             ->first();
+
+//         if ($cartItem) {
+//             // Nếu đã có, tăng số lượng
+//             $cartItem->quantity += $request->quantity;
+//             $cartItem->save();
+//         } else {
+//             // Nếu chưa có, tạo mới
+//             Cart::create([
+//                 'user_id' => $userId,
+//                 'product_id' => $request->product_id,
+//                 'quantity' => $request->quantity,
+//             ]);
+//         }
+
+//         return response()->json(['message' => 'Product added to cart successfully']);
+//     }
+
+//     public function getCarts()
+// {
+//     $userId = Auth::id();
+
+//     $cartItems = Cart::with('product')->where('user_id', $userId)->get();
+
+//     return response()->json($cartItems);
+// }
 }
+

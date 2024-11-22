@@ -13,7 +13,7 @@ sp chi tiết
                 </svg>
             </button>
         
-            <img src="/img/products/{{ $product->primary_image }}" alt="Hình ảnh 1" />
+            <img src="{{ asset('storage/products/upload/products' . $product->primary_image) }}" alt="Hình ảnh 1" />
         </div>
         <div class="min-h-full flex flex-col justify-center sm:px-6 lg:px-8 col-span-6">
             <form method="POST" action="{{ route('cart.add', $product->id) }}">

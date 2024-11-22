@@ -51,9 +51,9 @@ class ProductsDataTable extends BuilderDatatables
                     return 'No image';
                 }
             })
-            ->rawColumns(['primary_image','second_image','name']);
+            ->rawColumns(['primary_image', 'second_image', 'name']);
             ;
-    }
+        }
 
     public function query(product $model)
     {
