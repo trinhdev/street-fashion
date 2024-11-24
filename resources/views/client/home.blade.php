@@ -123,9 +123,9 @@
                                 <div class="bg-white border border-gray-300 shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300">
                                     <div class="flex items-center p-2">
                                         <div class="flex-shrink-0 relative">
-                                            <img src="/img/products/{{ $product['primary_image'] }}" alt="PRODUCT_IMAGE_ALT"
+                                            <img src="{{ asset($product->primary_image) }}" alt="PRODUCT_IMAGE_ALT"
                                                 class="h-48 w-48 object-cover">
-                                            <img src="/img/products/{{ $product['second_image'] }}" alt="PRODUCT_IMAGE_ALT"
+                                            <img src="{{ asset($product->second_image) }}" alt="PRODUCT_IMAGE_ALT"
                                                 class="h-48 w-48 object-cover absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100">
                                         </div>
 
@@ -188,9 +188,9 @@
                             <div class="flex flex-col text-center border border-gray-300 rounded-lg p-2 transition-shadow duration-300 hover:shadow-lg h-full">
                                 <div class="relative flex-grow">
                                     <div class="image-container">
-                                        <img src="/img/products/{{ $product['primary_image'] }}" alt="{{ $product['name'] }}" 
+                                        <img src="{{ asset($product->primary_image) }}" alt="{{ $product['name'] }}" 
                                              class="img-primary h-64 w-full object-cover transition-transform duration-300 hover:scale-105" />
-                                        <img src="/img/products/{{ $product['second_image'] }}" alt="{{ $product['name'] }} 2" 
+                                        <img src="{{ asset($product->primary_image) }}" alt="{{ $product['name'] }} 2" 
                                              class="img-secondary h-64 w-full object-cover absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100" />
                                     </div>
                                 </div>

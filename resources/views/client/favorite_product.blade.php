@@ -50,7 +50,7 @@ Sản phẩm yêu thích
                         @endphp
                         <div class="group relative bg-white rounded-xl shadow-sm hover:shadow-md transition duration-300 p-4" data-price="{{ $meta->product_sale == 'sale' ? $meta->price_sale : $meta->price }}">
                             <div class="relative">
-                                <img src="/img/products/{{ $favorite->product->primary_image }}" 
+                                <img src="{{ asset($favorite->product->primary_image) }}" 
                                      alt="{{ $favorite->product->name }}" 
                                      class="w-full aspect-[3/4] object-cover rounded-lg transition duration-300 group-hover:opacity-75">
                                 

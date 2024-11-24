@@ -13,7 +13,7 @@ sp chi tiết
                 </svg>
             </button>
         
-            <img src="{{ asset('storage/products/upload/products' . $product->primary_image) }}" alt="Hình ảnh 1" />
+            <img src="{{ asset($product->primary_image) }}" alt="Hình ảnh 1" />
         </div>
         <div class="min-h-full flex flex-col justify-center sm:px-6 lg:px-8 col-span-6">
             <form method="POST" action="{{ route('cart.add', $product->id) }}">
@@ -148,7 +148,7 @@ sp chi tiết
         </div>
         
         <div class="col-span-3 flex justify-center items-center">
-            <img src="/img/products/{{ $product->second_image }}" alt="Hình ảnh 2" />
+            <img src="{{ asset($product->second_image) }}" alt="Hình ảnh 2" />
             <button>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
