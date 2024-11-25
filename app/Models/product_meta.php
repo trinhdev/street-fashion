@@ -14,6 +14,8 @@ class product_meta extends Model
         'sold',
         'price',
         'price_sale',
+        'default',
+        'product_sale'
         
     ]; 
     use HasFactory;

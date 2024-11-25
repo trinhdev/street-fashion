@@ -18,10 +18,10 @@ class CategoryChildDabaTable extends BuilderDatatables
             ->eloquent($query)
             ->editColumn('name', function ($row) {
                 return '
-                    <a href="#" data-id="'.$row->id.'" onclick="detailCategory(this)">'.$row->name.'</a>
+                    <a href="#" data-id="'.$row->id.'" onclick="detailCategoryChild(this)">'.$row->name.'</a>
                     <div class="row-options">
-                        <a href="#" data-id="'.$row->id.'" onclick="detailCategory(this)">View</a> |
-                        <a href="#" data-id="'.$row->id.'" onclick="dialogConfirmWithAjax(deleteCategoryChild, this)" class="text-danger">Remove</a>
+                        <a href="#" data-id="'.$row->id.'" onclick="detailCategoryChild(this)">Xem</a> |
+                        <a href="#" data-id="'.$row->id.'" onclick="dialogConfirmWithAjax(deleteCategoryChild, this)" class="text-danger">Xóa</a>
                     </div>
                 ';
             })

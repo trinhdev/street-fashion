@@ -46,6 +46,19 @@ class OrderController extends Controller
             $order->address = $fullAddress;
             $order->order_status_id = 9;
             $order->order_code = $orderCode;
+
+            $voucherCode = $request->input('voucher_id'); // Nhận mã voucher từ request
+            if ($voucherCode) {
+                $voucher = Voucher::where('code', $voucherCode)
+                    ->whereDate('start_date', '<=', now())
+                    ->whereDate('end_date', '>=', now())
+                    ->first();
+
+                if ($voucher) {
+                    $order->voucher_id = $voucher->id; // Lưu voucher_id vào đơn hàng
+                    $order->save(); // Lưu đơn hàng
+                }
+            }
             
             $order->save();
 

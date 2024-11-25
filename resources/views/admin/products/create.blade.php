@@ -60,7 +60,21 @@
                                         autocomplete="off" value="{{ old('price_sale') }}">
                                 </div>
                                 
-                                
+                                <div class="form-group" app-field-wrapper="product_sale">
+                                    <label class="control-label">
+                                        <small class="req text-danger">* </small>Chế độ bán hàng
+                                    </label>
+                                    <div>
+                                        <label>
+                                            <input type="radio" name="product_sale" value="1" {{ old('product_sale', $product_meta->product_sale ?? 0) == 1 ? 'checked' : '' }}>
+                                            Sale
+                                        </label>
+                                        <label style="margin-left: 20px;">
+                                            <input type="radio" name="product_sale" value="2" {{ old('product_sale', $product_meta->product_sale ?? 0) == 2 ? 'checked' : '' }}>
+                                            Không Sale
+                                        </label>
+                                    </div>
+                                </div>
 
                                 <div class="form-group" app-field-wrapper="name">
                                     <label for="desciption" class="control-label">

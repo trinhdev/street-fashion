@@ -101,7 +101,7 @@ function ChangeToSlug()
             });
         }
 
-        function addCategories(e) {
+        function addCategory(e) {
             e.preventDefault();
             $('#showDetail_Modal').modal('toggle');
             document.getElementById('formCategories').reset();

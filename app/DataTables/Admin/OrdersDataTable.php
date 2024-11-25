@@ -91,10 +91,17 @@ class OrdersDataTable extends BuilderDatatables
             ->editColumn('total_amount', function ($row) {
                 return number_format($row->total_amount, 0, ',', '.') . 'đ';
             })
+            ->editColumn('voucher_id', function ($row) {
+                if ($row->voucher) {
+                    return $row->voucher->code . ' (' . number_format($row->voucher->discount, 0, ',', '.') . 'đ)';
+                }
+                return 'Không có';
+            })
+
            
         
             
-            ->rawColumns(['order_code','checkbox','user_id','order_status_id','total_amount']);
+            ->rawColumns(['order_code','checkbox','user_id','order_status_id','total_amount','voucher_id']);
     }
 
     public function query(Order $model)
@@ -121,7 +128,11 @@ class OrdersDataTable extends BuilderDatatables
             
             'total_amount' => [
                 'title' => 'Tổng đơn',
-            ]
+            ],
+            'voucher_id' => [
+                'title' => 'Mã giảm giá',
+            ],
+
         ];
     }
 }

@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="_buttons">
-                        <a onclick="addCategories(event)" class="btn btn-primary mright5 test pull-left display-block">
+                        <a onclick="addCategory(event)" class="btn btn-primary mright5 test pull-left display-block">
                             <i class="fa-regular fa-plus tw-mr-1"></i>
                             Thêm mới</a>
                         <a href="#" onclick="alert('Liên hệ tuanhhcps30852@fpt.edu.vn nếu xảy ra lỗi không mong muốn!')"
@@ -88,7 +88,7 @@
             });
         }
 
-        function addCategories(e) {
+        function addCategory(e) {
             e.preventDefault();
             $('#showCreated_Modal').modal('toggle');
             document.getElementById('formWarehouse').reset();

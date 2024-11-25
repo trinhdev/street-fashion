@@ -33,12 +33,12 @@ class CategoryChildController extends BaseController
     public function store(Request $request)
     {
         $request->validate([
-            'category_child_name' => 'required|max:255',
+            'name' => 'required|max:255',
              
         ]);
         Category_child::create([
-            'name'=> $request->category_child_name,
-            'id_parent'=> $request->categories_parent_id,
+            'name'=> $request->name,
+            'id_parent'=> $request->id_parent,
             'slug'=> $request->slug,
             
         ]);
@@ -52,15 +52,15 @@ class CategoryChildController extends BaseController
         return response(['data' => $module]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $validated = $request->validate([
-            'categories_name' => 'required|max:255',
+            'name' => 'required|max:255',
         ]);
         $module = Category_child::findOrFail($request->id);
         $module->update($request->all());
         $this->addToLog($request);
-        return response(['success' => 'success', 'message'=> 'Cập nhập thành công!']);
+        return response(['success' => 'success', 'message'=> 'Sửa thành công!']);
     }
 
     public function destroy(Request $request)

@@ -20,12 +20,12 @@
                     </li>
                     <li class="mx-1 text-gray-400">/</li>
                     <li>
-                        <a href="{{ url('/product/' . $category->id) }}" class="text-gray-600 hover:text-gray-600 transition-colors">{{ $category->name }}</a>
+                        <a href="{{ url('/product' . $category->id) }}" class="text-gray-600 hover:text-gray-600 transition-colors">{{ $category->name }}</a>
                     </li>
                     @if (isset($subcategory))
                         <li class="mx-1 text-gray-400">/</li>
                         <li>
-                            <a href="{{ url('/product/' . $category->id . '/' . $subcategory->id) }}" class="text-gray-600 hover:text-gray-600 transition-colors">{{ $subcategory->name }}</a>
+                            <a href="{{ url('/product' . $category->id . '/' . $subcategory->id) }}" class="text-gray-600 hover:text-gray-600 transition-colors">{{ $subcategory->name }}</a>
                         </li>
                     @endif
                 </ol>
@@ -84,10 +84,12 @@
                                     @foreach ($product->product_meta as $product_meta)
                                         <div class="flex flex-col text-center w-full max-w-xs mx-2 mb-6 transition-transform hover:scale-105">
                                             <div class="relative">
-                                                <div class="image-container">
-                                                    <img src="/img/products/{{ $product->primary_image }}" alt="PRODUCT_IMAGE_ALT" class="img-primary h-64 w-full object-cover rounded-lg" />
-                                                    <img src="/img/products/{{ $product->second_image }}" alt="PRODUCT_IMAGE_ALT 2" class="img-secondary h-64 w-full object-cover rounded-lg absolute top-0 left-0 transition-opacity duration-300 opacity-0 hover:opacity-100" />
-                                                </div>
+                                                <div class="flex-shrink-0 relative">
+                                            <img src="{{ asset($product->primary_image) }}" alt="PRODUCT_IMAGE_ALT"
+                                                class="h-48 w-48 object-cover">
+                                            <img src="{{ asset($product->second_image) }}" alt="PRODUCT_IMAGE_ALT"
+                                                class="h-48 w-48 object-cover absolute inset-0 opacity-0 transition-opacity duration-300 hover:opacity-100">
+                                        </div>
                                             </div>
                                             <div class="flex justify-center gap-2 mt-2">
                                                 <p class="text-sm text-gray-500">Kích thước:</p>

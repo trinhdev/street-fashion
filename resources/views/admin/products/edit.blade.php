@@ -49,7 +49,27 @@
                                 </div>
                             </div>
 
-                            <!-- Các trường danh mục và thương hiệu -->
+                            <div class="form-group" app-field-wrapper="product_sale">
+                                <label class="control-label">
+                                    <small class="req text-danger">* </small>Chế độ bán hàng
+                                </label>
+                                <div>
+                                    <label>
+                                        <input type="radio" name="product_sale" value="1" 
+                                            {{ optional($products->product_meta)->first()->product_sale == 1 ? 'checked' : '' }}>
+                                        Sale
+                                    </label>
+                                    <label style="margin-left: 20px;">
+                                        <input type="radio" name="product_sale" value="2" 
+                                            {{ optional($products->product_meta)->first()->product_sale == 2 ? 'checked' : '' }}>
+                                        Không Sale
+                                    </label>
+                                </div>
+                            </div>
+
+
+
+                            <!-- Các trường danh mục -->
                             <div class="form-group" app-field-wrapper="categories">
                                 <label for="categories" class="control-label">Danh mục</label>
                                 <div class="dropdown bootstrap-select bs3" style="width: 100%;">

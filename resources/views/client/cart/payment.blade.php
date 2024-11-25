@@ -73,7 +73,7 @@
                         @endphp
                         <div class="flex items-center justify-between">
                             <div class="flex items-center">
-                                <img src="/img/products/{{ $item['image'] }}" alt="{{ $item['name'] }}" class="w-16 h-16 rounded-md mr-4">
+                                <img src="{{ $item['image'] }}" alt="{{ $item['name'] }}" class="w-16 h-16 rounded-md mr-4">
                                 <div>
                                     <p class="text-gray-800 font-semibold">{{ $item['name'] }}</p>
                                     <p class="text-gray-800">Size: {{ $item['size'] }}</p>

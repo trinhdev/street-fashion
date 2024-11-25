@@ -22,11 +22,6 @@ class Status extends Model
         return $this->hasMany(Order::class, 'order_status_id');
     }
 
-    public function shippings()
-    {
-        return $this->hasMany(Shipping::class, 'shipping_status_id');
-    }
-
     public function payments()
     {
         return $this->hasMany(Payment::class, 'payment_status_id');

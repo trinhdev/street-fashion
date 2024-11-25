@@ -107,6 +107,7 @@ class ProductsController extends BaseController
             'price'=>$request->input('price'),
             'quantity'=>$request->input('quantity'),
             'price_sale'=> $request->input('price_sale'),
+            'product_sale' => $request->input('product_sale', 0), // Mặc định là 0 nếu không chọn
         ]);
     }
 }
@@ -164,7 +165,7 @@ class ProductsController extends BaseController
     $request->validate([
         'name' => 'required|string|max:255',
         'id_category_child' => 'required',
-        'path_1.*' => 'nullable|image|mimes:jpeg,webp,png,jpg,gif|max:2048', // Định dạng ảnh
+        // 'path_1.*' => 'nullable|image|mimes:jpeg,webp,png,jpg,gif|max:2048', // Định dạng ảnh
     ]);
 
     // Tìm sản phẩm cần cập nhật
@@ -188,6 +189,7 @@ class ProductsController extends BaseController
     $product_meta->price = $request->input('price');
     $product_meta->price_sale = $request->input('price_sale');
     $product_meta->quantity = $request->input('quantity');
+    $product_meta->product_sale = $request->input('product_sale', 2); // Mặc định là 0 nếu không chọn
     $product_meta->save();
     $product->save();
 

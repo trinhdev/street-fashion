@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="_buttons">
-                        <a onclick="addCategories(event)" class="btn btn-primary mright5 test pull-left display-block">
+                        <a onclick="addCategoryChild(event)" class="btn btn-primary mright5 test pull-left display-block">
                             <i class="fa-regular fa-plus tw-mr-1"></i>
                             Thêm mới</a>
                         <a href="#" onclick="alert('Liên hệ tuanhhcps30852@fpt.edu.vn nếu xảy ra lỗi không mong muốn!')"
@@ -21,7 +21,7 @@
                     <div class="panel_s tw-mt-2 sm:tw-mt-4">
                         <div class="panel-body">
                             <div class="panel-table-full">
-                                {{ $dataTable->table(['id' => 'categories_manage'], $footer = false) }}
+                                {{ $dataTable->table(['id' => 'category_manage'], $footer = false) }}
                             </div>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
             </div>
         </div>
     </div>
-    @include('admin.template.modal', ['id' => 'showDetail_Modal', 'title'=>'Form Categories', 'form'=>'admin.category-child.list'])
+    @include('admin.template.modal', ['id' => 'showDetail_Modal', 'title'=>'Thêm danh mục', 'form'=>'admin.category-child.list'])
 @endsection
 @push('script')
     {{ $dataTable->scripts() }}
@@ -91,49 +91,47 @@ function ChangeToSlug()
             document.getElementById('convert_slug').value = slug;
         }
 
-        function deleteCategories(data) {
+        function deleteCategoryChild(data) {
             let dataPost = {};
             dataPost.id = $(data).data('id');
-            $.post('/categories/destroy', dataPost).done(function (response) {
+            $.post('/admin/category-child/destroy', dataPost).done(function (response) {
                 alert_float('success', response.message);
                 let table = $('#categories_manage').DataTable();
                 table.ajax.reload(null, false);
             });
         }
 
-        function addCategories(e) {
-            e.preventDefault();
-            $('#showDetail_Modal').modal('toggle');
-            document.getElementById('formCategories').reset();
-            $('#categories_parent_id').val('').change();
-            
-            window.urlMethod = '/admin/category-child/store';
-            window.type = 'POST';
+        function addCategoryChild(e) {
+                e.preventDefault();
+                $('#showDetail_Modal').modal('toggle');
+                document.getElementById('formCategoryChild').reset(); // Reset tất cả các trường input
+               
+                window.urlMethod = '/admin/category-child/store'; // Thiết lập phương thức URL cho thêm mới
+                window.type = 'POST'; // Thiết lập phương thức HTTP
+            }
+
+
+        function detailCategoryChild(_this) {
+    let dataPost = {};
+    dataPost.id = $(_this).data('id');
+    $.post('/admin/category-child/show', dataPost).done(function (response) {
+        console.log(response.data);
+        for (let [key, value] of Object.entries(response.data)) {
+            let k = $('#' + key);
+            k.val(value);
+            k.trigger('change');
         }
 
+        $('#showDetail_Modal').modal('toggle');
+        window.urlMethod = '/admin/category-child/update/' + $(_this).data('id');
+        window.type = 'PUT';
+    });
+}
 
-        function detailCategories(_this) {
-            let dataPost = {};
-            dataPost.id = $(_this).data('id');
-            $.post('/categories/show', dataPost).done(function (response) {
-                console.log(response.data);
-                for (let [key, value] of Object.entries(response.data)) {
-                    let k = $('#' + key);
-                    k.val(value);
-                    k.trigger('change');
-                }
-                $('#slug').val(response.data.categories_name);  // Gán name vào trường slug
-                $('#convert_slug').val(response.data.slug); 
-                
-                window.urlMethod = '/update/' + $(_this).data('id');
-                window.type = 'PUT';
-            });
 
-        }
-
-        function pushCategory() {
+        function pushCategoryChild() {
             $(this).attr('disabled', 'disabled');
-            let data = $('#formCategories').serialize();
+            let data = $('#formCategoryChild').serialize();
             $.ajax({
                 url: urlMethod,
                 type: window.type,
@@ -151,8 +149,7 @@ function ChangeToSlug()
                         alert_float('danger', data.message);
                         $('#submit').prop('disabled', false);
                     }
-                }
-        , error: function (xhr) {
+                }, error: function (xhr) {
                     let errorString = xhr.responseJSON.message ?? '';
                     $.each(xhr.responseJSON.errors, function (key, value) {
                         errorString = value;

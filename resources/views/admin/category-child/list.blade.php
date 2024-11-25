@@ -1,11 +1,11 @@
 <div class="row">
     <div class="col-md-12">
-        <form id="formCategories" novalidate="novalidate" autocomplete="off">
+        <form id="formCategoryChild" novalidate="novalidate" autocomplete="off">
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="category_child_name">Tên danh mục</label>
-                        <input type="text"  id="slug" name="category_child_name" onkeyup="ChangeToSlug();" class="form-control" placeholder="Tên danh mục">
+                        <label for="name">Tên danh mục</label>
+                        <input type="text"  id="slug" name="name" onkeyup="ChangeToSlug();" class="form-control" placeholder="Tên danh mục">
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -16,8 +16,8 @@
                 </div>
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="categories_parent_id">Danh mục cha</label>
-                        <select name="categories_parent_id" id="categories_parent_id" class="form-control selectpicker" data-live-search="true" data-size="10">
+                        <label for="id_parent">Danh mục cha</label>
+                        <select name="id_parent" id="id_parent" class="form-control selectpicker" data-live-search="true" data-size="10">
                             <option value="">Vui lòng chọn danh mục cha</option>
                             @foreach ($data['list_category_parent'] as $category_parent)
                                 <option value="{{ $category_parent->id }}">{{ $category_parent->name }}</option>
@@ -29,8 +29,8 @@
             </div>
         </form>
         <div class="model-footer" style="float: right">
-            <button type="button" class="btn btn-default close_btn" data-dismiss="modal">Close</button>
-            <button type="button" onclick="pushCategory()" class="btn btn-info">Submit</button>
+            <button type="button" class="btn btn-default close_btn" data-dismiss="modal">Hủy</button>
+            <button type="button" onclick="pushCategoryChild()" class="btn btn-info">Lưu</button>
         </div>
     </div>
 </div>

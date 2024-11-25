@@ -103,13 +103,13 @@ Route::group(['middleware' => ['auth'], 'prefix'=>'admin'], function () {
 
         Route::prefix('category-child')->group(function () {
             Route::get('/', [CategoryChildController::class, 'index'])->name('category-child.index');
-            Route::get('/edit/{id}', 'CategoriesController@edit')->name('category-child.edit');
-            Route::get('/create', 'CategoriesController@create')->name('category-child.create');
+            Route::get('/edit/{id}', [CategoryChildController::class, 'edit'])->name('category-child.edit');
+            Route::get('/create', [CategoryChildController::class, 'create'])->name('category-child.create');
             Route::post('/show', [CategoryChildController::class, 'show'])->name('category-child.show');
             Route::post('/store', [CategoryChildController::class, 'store'])->name('category-child.store');
-            Route::post('/login', 'CategoriesController@login')->name('categories.login');
-            Route::put('/update/{id}', 'CategoriesController@update')->name('category-child.update');
-            Route::post('/destroy', 'CategoriesController@destroy')->name('category-child.destroy');
+            Route::post('/login', [CategoryChildController::class, 'login'])->name('categories.login');
+            Route::put('/update/{id}', [CategoryChildController::class, 'update'])->name('category-child.update');
+            Route::post('/destroy', [CategoryChildController::class, 'destroy'])->name('category-child.destroy');
         });
 
         Route::prefix('category-parent')->group(function () {

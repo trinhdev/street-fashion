@@ -18,8 +18,8 @@ class Order extends Model
         'order_status_id',
         'payment_id',
         'total_amount',
-        'shipping_address',
         'voucher_id',
+        'address',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -41,4 +41,9 @@ class Order extends Model
 {
     return $this->belongsTo(Payment::class,'payment_id');
 }
+    public function voucher()
+{
+    return $this->belongsTo(Voucher::class,'voucher_id');
+}
+
 }
